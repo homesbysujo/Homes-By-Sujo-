@@ -224,47 +224,62 @@ input { font-size: 16px !important; } /* prevent zoom on focus in iOS */
 
 
 
+
 <style id="login-overlay-style">
-#login-overlay{position:fixed;inset:0;z-index:99999;background:#f0ebe3;display:flex;align-items:center;justify-content:center;font-family:'DM Sans',sans-serif}
-#login-card{background:#fff;border-radius:20px;box-shadow:0 12px 48px rgba(92,64,48,.13);width:380px;max-width:95vw;overflow:hidden}
-#login-header{background:#5C4030;padding:32px 36px 28px;text-align:center;color:#fff}
-#login-header .login-logo{font-size:2.2rem;margin-bottom:4px}
-#login-header h2{margin:0 0 2px;font-size:1.4rem;font-weight:700;letter-spacing:.5px}
-#login-header p{margin:0;font-size:.82rem;opacity:.75;letter-spacing:1.5px;text-transform:uppercase}
-#login-body{padding:30px 32px 28px}
-.login-field{margin-bottom:16px}
-.login-field label{display:block;font-size:.78rem;font-weight:600;color:#7a6050;letter-spacing:.8px;text-transform:uppercase;margin-bottom:6px}
-.login-input-wrap{position:relative}
-.login-field input[type=text],.login-field input[type=password]{width:100%;padding:11px 42px 11px 14px;border:1.5px solid #e0d5cc;border-radius:10px;font-size:.97rem;background:#faf8f6;color:#3a2a1e;box-sizing:border-box;outline:none;transition:border .2s,box-shadow .2s}
-.login-field input:focus{border-color:#A08060;box-shadow:0 0 0 3px rgba(160,128,96,.12);background:#fff}
-.toggle-pw{position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;padding:0;color:#A08060;font-size:1rem;line-height:1}
-.remember-row{display:flex;align-items:center;gap:8px;margin-bottom:20px}
-.remember-row input[type=checkbox]{width:16px;height:16px;accent-color:#5C4030;cursor:pointer;flex-shrink:0}
-.remember-row label{font-size:.87rem;color:#7a6050;cursor:pointer;margin:0}
-#login-btn{width:100%;padding:13px;background:#5C4030;color:#fff;border:none;border-radius:10px;font-size:1rem;font-weight:600;cursor:pointer;letter-spacing:.5px;transition:background .2s,transform .1s}
-#login-btn:hover{background:#7a5540}
-#login-btn:active{transform:scale(.98)}
-#login-error{background:#fdecea;color:#c0392b;font-size:.85rem;border-radius:8px;padding:9px 12px;margin-top:14px;display:none;text-align:center}
-#login-footer-note{text-align:center;font-size:.75rem;color:#bbb;margin-top:18px}
+#login-overlay{position:fixed;inset:0;z-index:99999;background:#f5f0e8;display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:'DM Sans',sans-serif;overflow:hidden}
+#login-overlay::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle at 20% 20%,rgba(160,128,96,.07) 0%,transparent 50%),radial-gradient(circle at 80% 80%,rgba(92,64,48,.06) 0%,transparent 50%);pointer-events:none}
+#login-wrap{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;width:100%;max-width:420px;padding:24px 16px}
+#login-logo-area{text-align:center;margin-bottom:28px}
+#login-house-svg{width:88px;height:88px;margin-bottom:10px}
+#login-brand-name{line-height:1;margin-bottom:5px}
+#login-brand-name .brand-homes{display:block;font-family:'DM Serif Display',serif;font-size:2.5rem;font-weight:400;color:#6b4226;line-height:1.1}
+#login-brand-name .brand-by-sujo{display:block;font-size:2rem;color:#6b4226;line-height:1.1}
+#login-brand-name .brand-by{font-family:'DM Serif Display',serif;font-style:italic;font-weight:400}
+#login-brand-name .brand-sujo{font-family:'DM Serif Display',serif;font-weight:400}
+#login-tagline{font-family:'DM Serif Display',serif;font-style:italic;font-size:.9rem;color:#a07858;letter-spacing:.3px}
+#login-card{width:100%;background:rgba(255,255,255,.78);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(160,128,96,.18);border-radius:20px;padding:26px 26px 22px;box-shadow:0 4px 28px rgba(92,64,48,.09),0 1px 4px rgba(92,64,48,.05)}
+.login-label{display:block;font-size:.72rem;font-weight:600;color:#9a7860;letter-spacing:1px;text-transform:uppercase;margin-bottom:5px}
+.login-input-wrap{position:relative;margin-bottom:13px}
+.login-input-wrap input{width:100%;padding:12px 44px 12px 15px;background:#faf7f3;border:1.5px solid #e8ddd3;border-radius:11px;font-size:.94rem;color:#3a2a1e;box-sizing:border-box;outline:none;font-family:'DM Sans',sans-serif;transition:border-color .2s,box-shadow .2s,background .2s}
+.login-input-wrap input:focus{border-color:#a07858;background:#fff;box-shadow:0 0 0 3px rgba(160,120,88,.1)}
+.toggle-pw{position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;padding:0;color:#c0a080;font-size:.95rem;line-height:1;transition:color .2s}
+.toggle-pw:hover{color:#7a5540}
+.remember-row{display:flex;align-items:center;gap:9px;margin:2px 0 18px}
+.remember-row input[type=checkbox]{width:15px;height:15px;accent-color:#6b4226;cursor:pointer;flex-shrink:0}
+.remember-row label{font-size:.84rem;color:#9a7860;cursor:pointer}
+#login-btn{width:100%;padding:13px;background:#6b4226;color:#fff;border:none;border-radius:11px;font-size:.96rem;font-weight:600;font-family:'DM Sans',sans-serif;cursor:pointer;letter-spacing:.8px;text-transform:uppercase;transition:background .2s,transform .1s,box-shadow .2s;box-shadow:0 4px 16px rgba(107,66,38,.22)}
+#login-btn:hover{background:#7a5030;box-shadow:0 6px 20px rgba(107,66,38,.3)}
+#login-btn:active{transform:scale(.985)}
+#login-error{background:#fdecea;color:#c0392b;font-size:.82rem;border-radius:8px;padding:9px 12px;margin-top:12px;display:none;text-align:center}
+#login-footer-note{text-align:center;font-size:.72rem;color:#c0a888;margin-top:18px;letter-spacing:.5px}
 </style>
 </head>
 <body onload="(function(){try{loadLocal();}catch(e){} var now=new Date(); if(!S||typeof S.t60==='undefined'||isNaN(S.t60)){S={t60:0,t62:0,month:now.getMonth(),year:now.getFullYear()};} if(!LOG)LOG={}; if(!GUESTS)GUESTS=[]; try{render();}catch(e){} try{renderLog();}catch(e){} try{renderGuests();}catch(e){} try{syncUI('ok','Ready');}catch(e){} })()">
 <div id="login-overlay">
+<div id="login-wrap">
+<div id="login-logo-area">
+<svg id="login-house-svg" viewBox="0 0 100 95" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M50 8 L92 42 L92 88 L8 88 L8 42 Z" stroke="#7a5540" stroke-width="4.5" stroke-linejoin="round" fill="none"/><path d="M50 8 L92 42" stroke="#7a5540" stroke-width="4.5" stroke-linecap="round" fill="none"/><path d="M50 8 L8 42" stroke="#7a5540" stroke-width="4.5" stroke-linecap="round" fill="none"/><path d="M50 68 C50 68 28 53 28 40 C28 33 33.5 28 40 30 C44 31.5 47.5 34.5 50 38 C52.5 34.5 56 31.5 60 30 C66.5 28 72 33 72 40 C72 53 50 68 50 68 Z" stroke="#7a5540" stroke-width="4" stroke-linejoin="round" fill="none"/></svg>
+<div id="login-brand-name"><span class="brand-homes">Homes</span><span class="brand-by-sujo"><span class="brand-by">by</span> <span class="brand-sujo">Sujo</span></span></div>
+<div id="login-tagline">Where Comfort Feels Personal</div>
+</div>
 <div id="login-card">
-<div id="login-header"><div class="login-logo">🏠</div><h2>Homes by Sujo</h2><p>Co-host Portal</p></div>
-<div id="login-body">
-<div class="login-field"><label for="login-user">Username</label><div class="login-input-wrap"><input type="text" id="login-user" placeholder="Enter username" autocomplete="username"/></div></div>
-<div class="login-field"><label for="login-pass">Password</label><div class="login-input-wrap"><input type="password" id="login-pass" placeholder="Enter password" autocomplete="current-password"/><button class="toggle-pw" onclick="togglePw()" type="button" id="toggle-pw-btn" title="Show/hide password">👁</button></div></div>
+<label class="login-label" for="login-user">Username</label>
+<div class="login-input-wrap"><input type="text" id="login-user" placeholder="Enter your username" autocomplete="username"/></div>
+<label class="login-label" for="login-pass">Password</label>
+<div class="login-input-wrap"><input type="password" id="login-pass" placeholder="Enter your password" autocomplete="current-password"/><button class="toggle-pw" onclick="togglePw()" type="button" id="toggle-pw-btn" title="Show/hide password">👁</button></div>
 <div class="remember-row"><input type="checkbox" id="remember-me"/><label for="remember-me">Remember me for 60 days</label></div>
 <button id="login-btn" onclick="checkLogin()">Sign In</button>
 <div id="login-error">Incorrect username or password. Please try again.</div>
-<div id="login-footer-note">Homes by Sujo · Salmiya, Kuwait</div>
-</div></div></div>
+</div>
+<div id="login-footer-note">Salmiya, Kuwait</div>
+</div>
+</div>
 <script>
 function togglePw(){var i=document.getElementById('login-pass'),b=document.getElementById('toggle-pw-btn');if(i.type==='password'){i.type='text';b.textContent='🙈';}else{i.type='password';b.textContent='👁';}}
 function checkLogin(){var u=document.getElementById('login-user').value,p=document.getElementById('login-pass').value,r=document.getElementById('remember-me').checked;if(u==='homesbysujo'&&p==='SujoFrancis321'){document.getElementById('login-overlay').style.display='none';if(r){localStorage.setItem('hbs_auth_exp',Date.now()+60*24*60*60*1000);}else{localStorage.removeItem('hbs_auth_exp');sessionStorage.setItem('hbs_auth','1');}}else{document.getElementById('login-error').style.display='block';}}
-(function(){var e=localStorage.getItem('hbs_auth_exp'),s=sessionStorage.getItem('hbs_auth');if((e&&Date.now()<parseInt(e))||s==='1'){var o=document.getElementById('login-overlay');if(o)o.style.display='none';}document.addEventListener('DOMContentLoaded',function(){var e2=localStorage.getItem('hbs_auth_exp'),s2=sessionStorage.getItem('hbs_auth');if((e2&&Date.now()<parseInt(e2))||s2==='1'){var o2=document.getElementById('login-overlay');if(o2)o2.style.display='none';}var pi=document.getElementById('login-pass'),ui=document.getElementById('login-user');if(pi)pi.addEventListener('keydown',function(e){if(e.key==='Enter')checkLogin();});if(ui)ui.addEventListener('keydown',function(e){if(e.key==='Enter')pi.focus();});});})();
+(function(){var e=localStorage.getItem('hbs_auth_exp'),s=sessionStorage.getItem('hbs_auth');if((e&&Date.now()<parseInt(e))||s==='1'){var o=document.getElementById('login-overlay');if(o)o.style.display='none';}document.addEventListener('DOMContentLoaded',function(){var e2=localStorage.getItem('hbs_auth_exp'),s2=sessionStorage.getItem('hbs_auth');if((e2&&Date.now()<parseInt(e2))||s2==='1'){var o2=document.getElementById('login-overlay');if(o2)o2.style.display='none';}var pi=document.getElementById('login-pass'),ui=document.getElementById('login-user');if(pi)pi.addEventListener('keydown',function(ev){if(ev.key==='Enter')checkLogin();});if(ui)ui.addEventListener('keydown',function(ev){if(ev.key==='Enter')pi.focus();});});})();
 </script>
+
 
 
 <div class="page">
