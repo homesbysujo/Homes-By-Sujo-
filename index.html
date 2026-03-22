@@ -223,85 +223,49 @@ input { font-size: 16px !important; } /* prevent zoom on focus in iOS */
 </style>
 
 
+
 <style id="login-overlay-style">
-#login-overlay {
-  position: fixed;
-  top: 0; left: 0; width: 100%; height: 100%;
-  background: linear-gradient(135deg, #5C4030, #A08060);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 99999;
-}
-#login-box {
-  background: #fff;
-  border-radius: 16px;
-  padding: 40px 36px;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.25);
-  width: 320px;
-  text-align: center;
-  font-family: 'DM Sans', sans-serif;
-}
-#login-box h2 { margin: 0 0 6px 0; color: #5C4030; font-size: 1.5rem; }
-#login-box p { margin: 0 0 24px 0; color: #888; font-size: 0.9rem; }
-#login-box input {
-  width: 100%;
-  padding: 11px 14px;
-  margin-bottom: 14px;
-  border: 1.5px solid #ddd;
-  border-radius: 8px;
-  font-size: 1rem;
-  box-sizing: border-box;
-  outline: none;
-}
-#login-box input:focus { border-color: #A08060; }
-#login-box button {
-  width: 100%;
-  padding: 12px;
-  background: #5C4030;
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  font-size: 1rem;
-  cursor: pointer;
-}
-#login-box button:hover { background: #A08060; }
-#login-error { color: #c0392b; font-size: 0.85rem; margin-top: 10px; display: none; }
+#login-overlay{position:fixed;inset:0;z-index:99999;background:#f0ebe3;display:flex;align-items:center;justify-content:center;font-family:'DM Sans',sans-serif}
+#login-card{background:#fff;border-radius:20px;box-shadow:0 12px 48px rgba(92,64,48,.13);width:380px;max-width:95vw;overflow:hidden}
+#login-header{background:#5C4030;padding:32px 36px 28px;text-align:center;color:#fff}
+#login-header .login-logo{font-size:2.2rem;margin-bottom:4px}
+#login-header h2{margin:0 0 2px;font-size:1.4rem;font-weight:700;letter-spacing:.5px}
+#login-header p{margin:0;font-size:.82rem;opacity:.75;letter-spacing:1.5px;text-transform:uppercase}
+#login-body{padding:30px 32px 28px}
+.login-field{margin-bottom:16px}
+.login-field label{display:block;font-size:.78rem;font-weight:600;color:#7a6050;letter-spacing:.8px;text-transform:uppercase;margin-bottom:6px}
+.login-input-wrap{position:relative}
+.login-field input[type=text],.login-field input[type=password]{width:100%;padding:11px 42px 11px 14px;border:1.5px solid #e0d5cc;border-radius:10px;font-size:.97rem;background:#faf8f6;color:#3a2a1e;box-sizing:border-box;outline:none;transition:border .2s,box-shadow .2s}
+.login-field input:focus{border-color:#A08060;box-shadow:0 0 0 3px rgba(160,128,96,.12);background:#fff}
+.toggle-pw{position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;padding:0;color:#A08060;font-size:1rem;line-height:1}
+.remember-row{display:flex;align-items:center;gap:8px;margin-bottom:20px}
+.remember-row input[type=checkbox]{width:16px;height:16px;accent-color:#5C4030;cursor:pointer;flex-shrink:0}
+.remember-row label{font-size:.87rem;color:#7a6050;cursor:pointer;margin:0}
+#login-btn{width:100%;padding:13px;background:#5C4030;color:#fff;border:none;border-radius:10px;font-size:1rem;font-weight:600;cursor:pointer;letter-spacing:.5px;transition:background .2s,transform .1s}
+#login-btn:hover{background:#7a5540}
+#login-btn:active{transform:scale(.98)}
+#login-error{background:#fdecea;color:#c0392b;font-size:.85rem;border-radius:8px;padding:9px 12px;margin-top:14px;display:none;text-align:center}
+#login-footer-note{text-align:center;font-size:.75rem;color:#bbb;margin-top:18px}
 </style>
 </head>
 <body onload="(function(){try{loadLocal();}catch(e){} var now=new Date(); if(!S||typeof S.t60==='undefined'||isNaN(S.t60)){S={t60:0,t62:0,month:now.getMonth(),year:now.getFullYear()};} if(!LOG)LOG={}; if(!GUESTS)GUESTS=[]; try{render();}catch(e){} try{renderLog();}catch(e){} try{renderGuests();}catch(e){} try{syncUI('ok','Ready');}catch(e){} })()">
 <div id="login-overlay">
-  <div id="login-box">
-    <h2>Homes by Sujo</h2>
-    <p>Co-host Login</p>
-    <input type="text" id="login-user" placeholder="Username" autocomplete="username" />
-    <input type="password" id="login-pass" placeholder="Password" autocomplete="current-password" />
-    <button onclick="checkLogin()">Login</button>
-    <div id="login-error">Incorrect username or password.</div>
-  </div>
-</div>
+<div id="login-card">
+<div id="login-header"><div class="login-logo">🏠</div><h2>Homes by Sujo</h2><p>Co-host Portal</p></div>
+<div id="login-body">
+<div class="login-field"><label for="login-user">Username</label><div class="login-input-wrap"><input type="text" id="login-user" placeholder="Enter username" autocomplete="username"/></div></div>
+<div class="login-field"><label for="login-pass">Password</label><div class="login-input-wrap"><input type="password" id="login-pass" placeholder="Enter password" autocomplete="current-password"/><button class="toggle-pw" onclick="togglePw()" type="button" id="toggle-pw-btn" title="Show/hide password">👁</button></div></div>
+<div class="remember-row"><input type="checkbox" id="remember-me"/><label for="remember-me">Remember me for 60 days</label></div>
+<button id="login-btn" onclick="checkLogin()">Sign In</button>
+<div id="login-error">Incorrect username or password. Please try again.</div>
+<div id="login-footer-note">Homes by Sujo · Salmiya, Kuwait</div>
+</div></div></div>
 <script>
-function checkLogin() {
-  var u = document.getElementById('login-user').value;
-  var p = document.getElementById('login-pass').value;
-  if (u === 'homesbysujo' && p === 'SujoFrancis321') {
-    document.getElementById('login-overlay').style.display = 'none';
-    sessionStorage.setItem('hbs_auth', '1');
-  } else {
-    document.getElementById('login-error').style.display = 'block';
-  }
-}
-document.addEventListener('DOMContentLoaded', function() {
-  if (sessionStorage.getItem('hbs_auth') === '1') {
-    var ov = document.getElementById('login-overlay');
-    if (ov) ov.style.display = 'none';
-  }
-  var pi = document.getElementById('login-pass');
-  var ui = document.getElementById('login-user');
-  if (pi) pi.addEventListener('keydown', function(e) { if (e.key === 'Enter') checkLogin(); });
-  if (ui) ui.addEventListener('keydown', function(e) { if (e.key === 'Enter') pi.focus(); });
-});
+function togglePw(){var i=document.getElementById('login-pass'),b=document.getElementById('toggle-pw-btn');if(i.type==='password'){i.type='text';b.textContent='🙈';}else{i.type='password';b.textContent='👁';}}
+function checkLogin(){var u=document.getElementById('login-user').value,p=document.getElementById('login-pass').value,r=document.getElementById('remember-me').checked;if(u==='homesbysujo'&&p==='SujoFrancis321'){document.getElementById('login-overlay').style.display='none';if(r){localStorage.setItem('hbs_auth_exp',Date.now()+60*24*60*60*1000);}else{localStorage.removeItem('hbs_auth_exp');sessionStorage.setItem('hbs_auth','1');}}else{document.getElementById('login-error').style.display='block';}}
+(function(){var e=localStorage.getItem('hbs_auth_exp'),s=sessionStorage.getItem('hbs_auth');if((e&&Date.now()<parseInt(e))||s==='1'){var o=document.getElementById('login-overlay');if(o)o.style.display='none';}document.addEventListener('DOMContentLoaded',function(){var e2=localStorage.getItem('hbs_auth_exp'),s2=sessionStorage.getItem('hbs_auth');if((e2&&Date.now()<parseInt(e2))||s2==='1'){var o2=document.getElementById('login-overlay');if(o2)o2.style.display='none';}var pi=document.getElementById('login-pass'),ui=document.getElementById('login-user');if(pi)pi.addEventListener('keydown',function(e){if(e.key==='Enter')checkLogin();});if(ui)ui.addEventListener('keydown',function(e){if(e.key==='Enter')pi.focus();});});})();
 </script>
+
 
 <div class="page">
 
